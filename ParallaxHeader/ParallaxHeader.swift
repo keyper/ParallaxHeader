@@ -464,7 +464,11 @@ public class ParallaxHeader: NSObject {
         
         //Adjust content inset
         inset.top = top
-        scrollView.contentInset = inset
+        if let parallaxTableView = scrollView as? ParallaxTableView {
+            parallaxTableView.parallaxContentInset = inset
+        } else {
+            scrollView.contentInset = inset
+        }
     }
     
     
