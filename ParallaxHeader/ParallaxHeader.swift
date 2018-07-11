@@ -63,6 +63,8 @@ public class ParallaxHeader: NSObject {
      */
     public var parallaxHeaderDidScrollHandler: ParallaxHeaderHandlerBlock?
     
+    public var maximumHeight: CGFloat?
+    
     private weak var _scrollView: UIScrollView?
     var scrollView: UIScrollView! {
         get {
@@ -438,12 +440,13 @@ public class ParallaxHeader: NSObject {
         let minimumHeight = min(self.minimumHeight, self.height)
         let relativeYOffset = scrollView.contentOffset.y + scrollView.contentInset.top - height
         let relativeHeight = -relativeYOffset
+        let maxHeight = self.maximumHeight ?? CGFloat.infinity
         
         let frame = CGRect(
             x: 0,
             y: relativeYOffset,
             width: scrollView.frame.size.width,
-            height: max(relativeHeight, minimumHeight)
+            height: max(min(relativeHeight, maxHeight), minimumHeight)
         )
         contentView.frame = frame
         
