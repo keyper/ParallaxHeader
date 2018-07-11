@@ -1,9 +1,9 @@
 import Foundation
 import UIKit
 
-class ParallaxTableView : UITableView {
+public class ParallaxTableView : UITableView {
     
-    override var contentInset: UIEdgeInsets {
+    override public var contentInset: UIEdgeInsets {
         get {
             return super.contentInset
         }
